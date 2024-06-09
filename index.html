@@ -1,24 +1,36 @@
 <html lang="en">
+<head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <title>Occupier losses</title>
+</head>
 <body style="margin: 0; padding: 0;">
 <video src="Aware_RU_60.mp4" controls autoplay muted width="100%" height="100%"></video>
 <script type="text/javascript">
+    let titleRU = "Потери оккупантов";
+    let titleUK = "Втрати окупантів";
+    let titleEN = "Occupier losses";
     let lang = ''
+    let title = titleEN;
     let languages = navigator.languages;
     for (let i in languages) {
         switch (languages[i]) {
             case 'uk':
             case 'uk-UA':
                 lang = 'UK';
+                title = titleUK;
                 break;
             case 'ru':
             case 'ru-RU':
                 lang = 'RU';
+                title = titleRU;
                 break;
         }
         if (lang.length > 0) break;
     }
     if (lang.length === 0) lang = 'EN';
-    document.querySelector('video').src = './Aware_' + lang + '_60.mp4';
+    document.querySelector('video').src = 'Aware_' + lang + '_60.mp4';
+    document.title = title;
     <!--            document.querySelector('video').playbackRate = 0.1;-->
 </script>
 </body>
