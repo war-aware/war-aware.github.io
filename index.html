@@ -1,11 +1,55 @@
 <html lang="en">
+<style type="text/css">
+    video {
+        position: absolute;
+        left: 0;
+        top: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: 0;
+    }
+
+    #slowdown {
+        position: absolute;
+        left: 80%;
+        top: 0;
+        font-size: 17pt;
+        font-family: "JetBrains Mono",monospace;
+        z-index: 1;
+        background-color: orangered;
+        border-radius: 2px;
+    }
+</style>
 <head>
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <title>Occupier losses</title>
 </head>
+<script type="text/javascript">
+    let savedValue = 1.0
+
+    function changeSpeed(cb) {
+        let videoElement = document.querySelector('video')
+        if (cb.checked) {
+            savedValue = videoElement.playbackRate
+            videoElement.playbackRate = 0.1
+        } else {
+            videoElement.playbackRate = savedValue
+        }
+    }
+
+    function resetState() {
+        if (document.querySelector('video').playbackRate !== 0.1) {
+            document.querySelector('input').checked = false
+        }
+    }
+</script>
 <body style="margin: 0; padding: 0;">
-<video src="Aware_RU_60.mp4" controls autoplay muted width="100%" height="100%"></video>
+<video src="Aware_RU_60.mp4" controls autoplay muted width="100%" height="100%" onratechange="resetState()"></video>
+<div id="slowdown">
+<input type="checkbox" id="0.1x" onchange="changeSpeed(this)" value="">
+<label for="0.1x">0.1x</label>
+</div>
 <script type="text/javascript">
     let titleRU = "Потери оккупантов";
     let titleUK = "Втрати окупантів";
