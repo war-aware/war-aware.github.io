@@ -77,6 +77,17 @@
     const langAsParam = new URLSearchParams(window.location.search).get('lang');
     if (["RU", "UK", "EN"].includes(langAsParam)) {
         lang = langAsParam
+        switch (lang) {
+            case "EN":
+                title = titleEN;
+                break;
+            case "UK":
+                title = titleUK;
+                break;
+            case "RU":
+                title = titleRU;
+                break;
+        }
     }
     document.querySelector('video').src = 'Aware_' + lang + '_60.mp4';
     document.title = title;
