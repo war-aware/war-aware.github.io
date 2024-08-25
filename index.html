@@ -9,18 +9,19 @@
         z-index: 0;
     }
 
-    #slowdown {
+    #slowdown, iframe {
         position: absolute;
         left: 80%;
         top: 0;
         font-size: 17pt;
-        font-family: "JetBrains Mono",monospace;
+        font-family: "JetBrains Mono", monospace;
         z-index: 1;
         background-color: orangered;
         border-radius: 2px;
     }
 </style>
 <head>
+    <meta charset="UTF-8">
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <title>Occupier losses</title>
@@ -47,8 +48,8 @@
 <body style="margin: 0; padding: 0;">
 <video src="Aware_RU_60.mp4" controls autoplay muted width="100%" height="100%" onratechange="resetState()"></video>
 <div id="slowdown">
-<input type="checkbox" id="0.1x" onchange="changeSpeed(this)" value="">
-<label for="0.1x">0.1x</label>
+    <input type="checkbox" id="0.1x" onchange="changeSpeed(this)" value="">
+    <label for="0.1x">0.1x</label>
 </div>
 <script type="text/javascript">
     let titleRU = "Потери оккупантов";
@@ -73,6 +74,10 @@
         if (lang.length > 0) break;
     }
     if (lang.length === 0) lang = 'EN';
+    const langAsParam = new URLSearchParams(window.location.search).get('lang');
+    if (["RU", "UK", "EN"].includes(langAsParam)) {
+        lang = langAsParam
+    }
     document.querySelector('video').src = 'Aware_' + lang + '_60.mp4';
     document.title = title;
     <!--            document.querySelector('video').playbackRate = 0.1;-->
