@@ -46,52 +46,10 @@
     }
 </script>
 <body style="margin: 0; padding: 0;">
-<video src="ru.mp4" controls autoplay muted width="100%" height="100%" onratechange="resetState()"></video>
+<video src="en.mp4" controls autoplay muted width="100%" height="100%" onratechange="resetState()"></video>
 <div id="slowdown">
     <input type="checkbox" id="0.1x" onchange="changeSpeed(this)" value="">
     <label for="0.1x">0.1x</label>
 </div>
-<script type="text/javascript">
-    let titleRU = "Потери оккупантов";
-    let titleUK = "Втрати окупантів";
-    let titleEN = "Occupier losses";
-    let lang = ''
-    let title = titleEN;
-    let languages = navigator.languages;
-    for (let i in languages) {
-        switch (languages[i]) {
-            case 'uk':
-            case 'uk-UA':
-                lang = 'uk';
-                title = titleUK;
-                break;
-            case 'ru':
-            case 'ru-RU':
-                lang = 'ru';
-                title = titleRU;
-                break;
-        }
-        if (lang.length > 0) break;
-    }
-    if (lang.length === 0) lang = 'en';
-    const langAsParam = new URLSearchParams(window.location.search).get('lang');
-    if (["ru", "uk", "en"].includes(langAsParam)) {
-        lang = langAsParam
-        switch (lang) {
-            case "en":
-                title = titleEN;
-                break;
-            case "uk":
-                title = titleUK;
-                break;
-            case "ru":
-                title = titleRU;
-                break;
-        }
-    }
-    document.querySelector('video').src = lang + '.mp4';
-    document.title = title;
-    <!--            document.querySelector('video').playbackRate = 0.1;-->
-</script>
 </body>
 </html>
